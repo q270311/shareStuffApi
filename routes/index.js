@@ -22,4 +22,12 @@ router.get("/api/stuff/:id", (req, res, next) => {
   });
 });
 
+/* insert Stuff */
+router.post("/api/stuff", (req, res, next) => {  
+  const sutff = { ...req.body }
+  connection.addStuff(sutff).then((result) => {
+    res.status(201).json(result);
+  });  
+});
+
 module.exports = router;
