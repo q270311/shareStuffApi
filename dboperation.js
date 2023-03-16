@@ -23,7 +23,21 @@ async function selectStuff(stuffId) {
     }
 }
 
+async function addStuff(stuff) {
+    try {
+        const connection = await mssql.connect(config);
+        const insertStuff = await connection.request()
+            .input('name', mssql.NVARCHAR(50), stuff.name)
+            .input('description', mssql.NVARCHAR(255), stuff.description)
+            .execute('addStuff');
+        return await insertStuff.recordsets; 
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 module.exports = {
     selectAllStuff: selectAllStuff,
     selectStuff: selectStuff,
+    addStuff: addStuff,
 };
