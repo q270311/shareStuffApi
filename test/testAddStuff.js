@@ -2,9 +2,9 @@
 
 (async () => {
     try {
-        const response = await axios.post("http://127.0.0.1:3000/api/stuff",{
-            name: "Rower elektryczny źćąŹĆĘ",
-            description: "Kross Hexagon Boost 1.0 522 Wh"
+        const response = await axios.post("https://sharestuff.onrender.com/api/stuff",{
+            name: "Kosiarka do trawy",
+            description: "Elektryczna kosiarka do trawy"
         });
     } catch (error) {
         console.log(`Brak komunikacji z serwerem ${error}`)
