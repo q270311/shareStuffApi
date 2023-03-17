@@ -2,9 +2,9 @@
 
 (async () => {
     try {
-        const response = await axios.post("http://localhost:3000/api/stuff",{
-            name: "Przyczepka samochodowa",
-            description: "Przyczepka samochodowa. Max. ładowność 1000kg"
+        const response = await axios.post("https://sharestuff.onrender.com/api/stuff",{
+            name: "Namiot 3-osobowy",
+            description: "Namiot 3-osobowy z tropikiem"
         });
     } catch (error) {
         console.log(`Brak komunikacji z serwerem ${error}`)
