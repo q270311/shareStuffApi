@@ -15,9 +15,16 @@ router.get("/api/stuff", (req, res, next) => {
   });
 });
 
-/* Select Stuff */
+/* Select Stuff by id */
 router.get("/api/stuff/:id", (req, res, next) => {
   connection.selectStuff(req.params.id).then((result) => {
+    res.json(result[0]);
+  });
+});
+
+/* Select reservations by sruff id */
+router.get("/api/reservations/:id", (req, res, next) => {
+  connection.selectReservations(req.params.id).then((result) => {
     res.json(result[0]);
   });
 });
