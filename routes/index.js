@@ -29,6 +29,13 @@ router.get("/api/reservations/:id", (req, res, next) => {
   });
 });
 
+/* Select reservations2 by sruff id */
+router.get("/api/reservations2/:id", (req, res, next) => {
+  connection.selectReservations2(req.params.id).then((result) => {
+    res.json(result[0]);
+  });
+});
+
 /* insert Stuff */
 router.post("/api/stuff", (req, res, next) => {  
   const sutff = { ...req.body }
