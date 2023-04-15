@@ -7,7 +7,7 @@ async function selectAllStuff() {
     const response = await connection
       .request()
       .query("SELECT *  FROM dbo.stuff");
-    return await response.recordsets;
+    return response.recordsets;
   } catch (error) {
     console.log(error);
   }
@@ -20,7 +20,7 @@ async function selectStuff(stuffId) {
       .request()
       .input("id", mssql.Int, stuffId)
       .query("SELECT *  FROM dbo.stuff WHERE id=@id");
-    return await response.recordsets;
+    return response.recordsets;
   } catch (error) {
     console.log(error);
   }
@@ -32,8 +32,8 @@ async function selectReservations(stuffId) {
     const response = await connection
       .request()
       .input("id", mssql.Int, stuffId)
-      .query("SELECT *  FROM dbo.reservations WHERE stuff_id=@id");
-    return await response.recordsets;
+      .execute("selectReservations1Months");
+    return response.recordsets;
   } catch (error) {
     console.log(error);
   }
@@ -47,7 +47,7 @@ async function addStuff(stuff) {
       .input("name", mssql.NVARCHAR(50), stuff.name)
       .input("description", mssql.NVARCHAR(255), stuff.description)
       .execute("addStuff");
-    return await insertStuff.recordsets;
+    return insertStuff.recordsets;
   } catch (error) {
     console.log(error);
   }
