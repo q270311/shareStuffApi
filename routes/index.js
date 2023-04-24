@@ -37,4 +37,12 @@ router.post("/api/stuff", (req, res, next) => {
   });  
 });
 
+/* insert reservation */
+router.post("/api/reservation", (req, res, next) => {
+  const reservation = { ...req.body }
+  connection.addReservation(reservation).then((result) => {
+    res.status(201).json(result);
+  });  
+});
+
 module.exports = router;

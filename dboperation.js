@@ -53,9 +53,25 @@ async function addStuff(stuff) {
   }
 }
 
+async function addReservation(reservation) {
+  try {
+    const connection = await mssql.connect(config);
+    const insertStuff = await connection
+      .request()
+      .input("stuff_id", mssql.Int, reservation.stuffId)
+      .input("start_date", mssql.Date, reservation.startDate)
+      .input("end_date", mssql.Date, reservation.endDate)
+      .execute("addReservation");
+    return insertStuff.recordsets;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 module.exports = {
   selectAllStuff: selectAllStuff,
   selectStuff: selectStuff,
   selectReservations: selectReservations,
+  addReservation: addReservation,
   addStuff: addStuff,
 };
